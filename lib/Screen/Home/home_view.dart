@@ -6,9 +6,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-      home: Container(
+    return Container(
         color: Colors.white, // Background color
         child: Column(
           children: [
@@ -40,7 +38,6 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

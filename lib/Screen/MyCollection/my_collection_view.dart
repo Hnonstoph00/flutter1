@@ -8,6 +8,9 @@ class MyCollectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(color: Colors.red,);
+    return Center(child: ElevatedButton(onPressed: () {
+        Navigator.pop(context);
+
+    }, child: Text("Go back"),));
   }
 }
