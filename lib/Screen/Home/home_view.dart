@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Model/TrendingModel/trending_model.dart';
+import 'package:flutter_application_1/Screen/Home/Item/home_item.dart';
 import 'package:flutter_application_1/Service/WebService.dart';
 
 class HomeView extends StatefulWidget {
@@ -35,28 +36,18 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Trending Data'),
-      ),
-      body: isLoading
-          ? Center(child: CircularProgressIndicator()) // Show loading indicator while data is being fetched
+    return Container(
+      child: isLoading
+          ? const Center(
+              child:
+                  CircularProgressIndicator()) // Show loading indicator while data is being fetched
           : ListView.builder(
               itemCount: trendingList.length,
               itemBuilder: (context, index) {
                 TrendingModel item = trendingList[index];
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('Created by: ${item.createUser}, Hearts: ${item.heartCount}'),
-                );
+                return TrendingItemTile(item: item);
               },
             ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: HomeView(trendingService: TrendingServiceImpl()),
-  ));
 }

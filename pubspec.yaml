@@ -7,6 +7,8 @@ environment:
   sdk: ^3.5.1
 
 dependencies:
+  get:
+
   flutter:
     sdk: flutter
 
