@@ -18,33 +18,34 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainView(),
+      home: const MainView(),
     );
   }
 }
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 3,  // Number of tabs
       child: Scaffold(
-        appBar: AppBar(
-          bottom: const TabBar(
+        body: TabBarView(
+          children: [
+            HomeView(),
+            TrendingView(),
+            MyCollectionView(),
+          ],
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: TabBar(
             tabs: [
               Tab(text: 'Home'),
               Tab(text: 'Trending'),
               Tab(text: 'My Collection'),
             ],
           ),
-        ),
-        body: const TabBarView(
-          children: const [
-            HomeView(),
-            TrendingView(),
-            MyCollectionView(),
-          ],
         ),
       ),
     );

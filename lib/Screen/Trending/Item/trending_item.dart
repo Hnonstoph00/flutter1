@@ -10,7 +10,20 @@ class TrendingItemWidget extends StatelessWidget {
       color: Colors.red,
       child: Center(
         child: Column(
-          children: [Text(text), const Text("Hello world")],
+          children: [
+            const Text("Hello world",
+                style: TextStyle(color: Colors.white, height: 1)),
+            Text(text, style: const TextStyle(color: Colors.white, height: 1)),
+            const Text("Hello world",
+                style: TextStyle(color: Colors.white, height: 1)),
+            const Expanded(
+                child: Image(
+              image: AssetImage('lib/assets/images/lockcode.png'),
+              fit: BoxFit.contain,
+            )),
+            const Text("Hello world",
+                style: TextStyle(color: Colors.white, height: 1)),
+          ],
         ),
       ),
     );

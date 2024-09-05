@@ -12,7 +12,7 @@ class TrendingView extends StatelessWidget {
     // TODO: implement build
 
     return GridView.count(
-      childAspectRatio: 2/1,
+      childAspectRatio: 2/4,
       primary: false,
       padding: const EdgeInsets.all(20),
       crossAxisCount: 2,
