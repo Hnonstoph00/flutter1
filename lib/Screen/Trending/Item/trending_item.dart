@@ -12,7 +12,7 @@ class TrendingItemWidget extends StatelessWidget {
       color: Colors.red,
       child: Center(
         child: Column(
-          children: [Text(text), Text("Hello world")],
+          children: [Text(text), const Text("Hello world")],
         ),
       ),
     );

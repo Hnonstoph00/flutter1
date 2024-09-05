@@ -5,7 +5,7 @@ import 'package:flutter_application_1/Screen/Trending/Item/trending_item.dart';
 class TrendingView extends StatelessWidget {
   const TrendingView({super.key});
 
-  static const List<String> alphabet = <String>['A', 'B', 'C'];
+  static const List<String> alphabet = <String>['A', 'B', 'C','A', 'B', 'C','A', 'B', 'C','A', 'B', 'C','A', 'B', 'C','A', 'B', 'C','A', 'B', 'C'];
 
   @override
   Widget build(BuildContext context) {
