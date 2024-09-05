@@ -7,8 +7,6 @@ class TrendingItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      height: 100,
       color: Colors.red,
       child: Center(
         child: Column(

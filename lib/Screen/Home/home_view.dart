@@ -24,7 +24,7 @@ class HomeView extends StatelessWidget {
                   Expanded(
                     child: Container(
                       color: Colors.green, // Second section color
-                      width: double.infinity, // Match the width of the screen
+                      width: 200, // Match the width of the screen
                     ),
                   ),
                   Expanded(
