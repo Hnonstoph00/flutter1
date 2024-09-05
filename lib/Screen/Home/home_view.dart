@@ -1,43 +1,62 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Model/TrendingModel/trending_model.dart';
+import 'package:flutter_application_1/Service/WebService.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeView extends StatefulWidget {
+  final TrendingServiceImpl trendingService;
+
+  const HomeView({Key? key, required this.trendingService}) : super(key: key);
+
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  List<TrendingModel> trendingList = [];
+  bool isLoading = true; // To show loading indicator while fetching data
+
+  @override
+  void initState() {
+    super.initState();
+    loadTrendingData();
+  }
+
+  Future<void> loadTrendingData() async {
+    try {
+      List<TrendingModel> data = await widget.trendingService.getData();
+      setState(() {
+        trendingList = data;
+        isLoading = false; // Data fetched, stop showing the loading indicator
+      });
+    } catch (e) {
+      print("Error fetching trending data: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white, // Background color
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 50, right: 60, top: 20), // Left and right padding
-              child: Container(
-                height: 100, // Fixed height for the red part
-                color: Colors.red, // Red section color
-                width: double.infinity, // Match the width of the parent (with padding applied)
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Trending Data'),
+      ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator()) // Show loading indicator while data is being fetched
+          : ListView.builder(
+              itemCount: trendingList.length,
+              itemBuilder: (context, index) {
+                TrendingModel item = trendingList[index];
+                return ListTile(
+                  title: Text(item.name),
+                  subtitle: Text('Created by: ${item.createUser}, Hearts: ${item.heartCount}'),
+                );
+              },
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      color: Colors.green, // Second section color
-                      width: 200, // Match the width of the screen
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      color: Colors.blue, // Third section color
-                      width: double.infinity, // Match the width of the screen
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+    );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: HomeView(trendingService: TrendingServiceImpl()),
+  ));
 }

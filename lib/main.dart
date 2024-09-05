@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screen/Home/home_view.dart';
 import 'package:flutter_application_1/Screen/MyCollection/my_collection_view.dart';
 import 'package:flutter_application_1/Screen/Trending/trending_view.dart';
+import 'package:flutter_application_1/Service/WebService.dart';
 
 void main() {
   runApp(const MainApp());
@@ -28,17 +29,17 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 3,  // Number of tabs
       child: Scaffold(
         body: TabBarView(
           children: [
-            HomeView(),
-            TrendingView(),
-            MyCollectionView(),
+            HomeView(trendingService: TrendingServiceImpl(),),
+            const TrendingView(),
+            const MyCollectionView(),
           ],
         ),
-        bottomNavigationBar: BottomAppBar(
+        bottomNavigationBar: const BottomAppBar(
           child: TabBar(
             tabs: [
               Tab(text: 'Home'),

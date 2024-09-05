@@ -18,4 +18,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - lib/assets/json/trending_data.json
     - lib/assets/images/
