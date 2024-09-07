@@ -15,13 +15,15 @@ class _TrendingItemTileState extends State<TrendingItemTile> {
   bool _isDetailed = false;
 
   void _toggleDetail() {
-    setState(() {
-      _isDetailed = !_isDetailed;
-    });
+    // setState(() {
+    //   _isDetailed = !_isDetailed;
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
+    return Text(widget.item.name);
+
     return ListTile(
       title: Text(widget.item.name),
       subtitle: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Model/TrendingModel/trending_model.dart';
 import 'package:flutter_application_1/Screen/Home/Item/home_item.dart';
+import 'package:flutter_application_1/Screen/MyCollection/my_collection_view.dart';
 import 'package:flutter_application_1/Service/WebService.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomeView extends StatefulWidget {
   _HomeViewState createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin {
   List<TrendingModel> trendingList = [];
   bool isLoading = true; // To show loading indicator while fetching data
 
@@ -36,18 +37,32 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context); // Add this line to ensure the keep-alive behavior works
     return Container(
       child: isLoading
           ? const Center(
-              child:
-                  CircularProgressIndicator()) // Show loading indicator while data is being fetched
+              child: CircularProgressIndicator(), // Show loading indicator while data is being fetched
+            )
           : ListView.builder(
               itemCount: trendingList.length,
               itemBuilder: (context, index) {
-                TrendingModel item = trendingList[index];
-                return TrendingItemTile(item: item);
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MyCollectionView(),
+                      ),
+                    );
+                    print("LOG + huy ha");
+                  },
+                  child: TrendingItemTile(item: trendingList[index]),
+                );
               },
             ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
