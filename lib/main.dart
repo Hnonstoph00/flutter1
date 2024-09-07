@@ -27,8 +27,7 @@ class MainView extends StatefulWidget {
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView>
-    with SingleTickerProviderStateMixin {
+class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
@@ -45,40 +44,62 @@ class _MainViewState extends State<MainView>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TabBarView(
-        controller: _tabController,
+    return Material(
+      child: Column(
         children: [
-          HomeView(
-            trendingService: TrendingServiceImpl(),
-          ),
-          const TrendingView(),
-          const MyCollectionView(),
-        ],
-      ),
-      bottomNavigationBar: SafeArea(
-        child: BottomAppBar(
-          color: Colors.transparent,
-          child: Container(
-            child: TabBar(
-              dividerColor: Colors.transparent,
+          Expanded(
+            child: TabBarView(
               controller: _tabController,
-              indicator: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.transparent, // No underline
-                  ),
-                ),
-              ),
-              tabs: const [
-                Tab(text: 'Home'),
-                Tab(text: 'Trending'),
-                Tab(text: 'My Collection'),
+              children: [
+                HomeView(trendingService: TrendingServiceImpl()),
+                const TrendingView(),
+                const MyCollectionView(),
               ],
             ),
           ),
-        ),
+          Container(
+            color: Colors.white, // Background color of the BottomAppBar
+            height: 80.0, // Fixed height for the TabBar
+            child: TabBar(
+              controller: _tabController,
+                            indicator: BoxDecoration(), // Removes the tab indicator
+
+              tabs: [
+                CustomTab(icon: Icons.home, label: 'Home', index: 0, controller: _tabController),
+                CustomTab(icon: Icons.trending_up, label: 'Trending', index: 1, controller: _tabController),
+                CustomTab(icon: Icons.favorite, label: 'My Collection', index: 2, controller: _tabController),
+              ],
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class CustomTab extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final int index;
+  final TabController controller;
+
+  const CustomTab({
+    required this.icon,
+    required this.label,
+    required this.index,
+    required this.controller,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    bool isSelected = controller.index == index;
+    return Tab(
+      icon: Icon(
+        icon,
+        color: isSelected ? Colors.blue : Colors.grey, // Change icon color based on selection
+      ),
+      text: label,
     );
   }
 }
