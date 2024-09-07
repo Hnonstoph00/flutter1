@@ -13,13 +13,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'TabBar App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainView(),
+      home: MainView(),
     );
   }
 }

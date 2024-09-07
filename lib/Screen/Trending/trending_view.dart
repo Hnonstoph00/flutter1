@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Screen/MyCollection/my_collection_view.dart';
 import 'package:flutter_application_1/Screen/Trending/Item/trending_item.dart';
 
 class TrendingView extends StatelessWidget {
