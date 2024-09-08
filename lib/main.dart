@@ -27,7 +27,8 @@ class MainView extends StatefulWidget {
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin {
+class _MainViewState extends State<MainView>
+    with SingleTickerProviderStateMixin {
   late final TabController _tabController;
 
   @override
@@ -62,15 +63,28 @@ class _MainViewState extends State<MainView> with SingleTickerProviderStateMixin
             height: 80.0, // Fixed height for the TabBar
             child: TabBar(
               controller: _tabController,
-                            indicator: BoxDecoration(), // Removes the tab indicator
+              indicator: BoxDecoration(), // Removes the tab indicator
 
               tabs: [
-                CustomTab(icon: Icons.home, label: 'Home', index: 0, controller: _tabController),
-                CustomTab(icon: Icons.trending_up, label: 'Trending', index: 1, controller: _tabController),
-                CustomTab(icon: Icons.favorite, label: 'My Collection', index: 2, controller: _tabController),
+                CustomTab(
+                    icon: Icons.home,
+                    label: 'Home',
+                    index: 0,
+                    controller: _tabController),
+                CustomTab(
+                    icon: Icons.trending_up,
+                    label: 'Trending',
+                    index: 1,
+                    controller: _tabController),
+                CustomTab(
+                    icon: Icons.favorite,
+                    label: 'My Collection',
+                    index: 2,
+                    controller: _tabController),
               ],
             ),
           ),
+          Container(height: 80, color: Colors.red,)
         ],
       ),
     );
@@ -97,7 +111,9 @@ class CustomTab extends StatelessWidget {
     return Tab(
       icon: Icon(
         icon,
-        color: isSelected ? Colors.blue : Colors.grey, // Change icon color based on selection
+        color: isSelected
+            ? Colors.blue
+            : Colors.grey, // Change icon color based on selection
       ),
       text: label,
     );

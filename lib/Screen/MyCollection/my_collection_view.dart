@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class MyCollectionView extends StatelessWidget {
@@ -8,6 +6,21 @@ class MyCollectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(padding: const EdgeInsets.only(left: 40, right: 40, top: 40, bottom: 100), child: const Center(child: Image(image: AssetImage('lib/assets/images/lockcode.png'))));
+    return Container(
+        color: Colors.amber,
+        padding:
+            const EdgeInsets.only(left: 40, right: 40, top: 40, bottom: 100),
+        child: Container(
+            color: Colors.amber,
+            child: Column(
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      print("LOG + back buton tapped");
+                    },
+                    child: const Text("Back"))
+              ],
+            )));
   }
 }
