@@ -46,47 +46,79 @@ class _MainViewState extends State<MainView>
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
+      child: Stack(
         children: [
-          Expanded(
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                HomeView(trendingService: TrendingServiceImpl()),
-                const TrendingView(),
-                const MyCollectionView(),
-              ],
-            ),
-          ),
-          Container(
-            color: Colors.white, // Background color of the BottomAppBar
-            height: 80.0, // Fixed height for the TabBar
-            child: TabBar(
-              controller: _tabController,
-              indicator: BoxDecoration(), // Removes the tab indicator
-
-              tabs: [
-                CustomTab(
-                    icon: Icons.home,
-                    label: 'Home',
-                    index: 0,
-                    controller: _tabController),
-                CustomTab(
-                    icon: Icons.trending_up,
-                    label: 'Trending',
-                    index: 1,
-                    controller: _tabController),
-                CustomTab(
-                    icon: Icons.favorite,
-                    label: 'My Collection',
-                    index: 2,
-                    controller: _tabController),
-              ],
-            ),
-          ),
-          Container(height: 80, color: Colors.red,)
+          MainController(tabController: _tabController),
+          const Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 90,
+            child: BannerView(),
+          )
         ],
       ),
+    );
+  }
+}
+
+class BannerView extends StatelessWidget {
+  const BannerView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
+    );
+  }
+}
+
+class MainController extends StatelessWidget {
+  final TabController tabController;
+
+  const MainController({super.key, required this.tabController});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: TabBarView(
+            controller: tabController,
+            children: [
+              HomeView(trendingService: TrendingServiceImpl()),
+              const TrendingView(),
+              const MyCollectionView(),
+            ],
+          ),
+        ),
+        Container(
+          color: Colors.white, // Background color of the BottomAppBar
+          height: 80.0, // Fixed height for the TabBar
+          child: TabBar(
+            controller: tabController,
+            indicator: const BoxDecoration(), // Removes the tab indicator
+
+            tabs: [
+              CustomTab(
+                  icon: Icons.home,
+                  label: 'Home',
+                  index: 0,
+                  controller: tabController),
+              CustomTab(
+                  icon: Icons.trending_up,
+                  label: 'Trending',
+                  index: 1,
+                  controller: tabController),
+              CustomTab(
+                  icon: Icons.favorite,
+                  label: 'My Collection',
+                  index: 2,
+                  controller: tabController),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

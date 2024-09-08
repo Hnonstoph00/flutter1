@@ -21,6 +21,8 @@ class MyCollectionView extends StatelessWidget {
                     },
                     child: const Text("Back"))
               ],
-            )));
+            )
+            )
+            );
   }
 }

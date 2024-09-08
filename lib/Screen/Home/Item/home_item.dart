@@ -21,17 +21,5 @@ class _TrendingItemTileState extends State<TrendingItemTile> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Text(widget.item.name);
-
-    return ListTile(
-      title: Text(widget.item.name),
-      subtitle: Text(
-        _isDetailed
-          ? 'Created by: ${widget.item.createUser}, Hearts: ${widget.item.heartCount}'
-          : 'Tap for more details',
-      ),
-      onTap: _toggleDetail,
-    );
-  }
+  Widget build(BuildContext context) => Text(widget.item.name);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Model/TrendingModel/trending_model.dart';
 import 'package:flutter_application_1/Screen/Home/Item/home_item.dart';
 import 'package:flutter_application_1/Screen/MyCollection/my_collection_view.dart';
+import 'package:flutter_application_1/Screen/Setting/setting_view.dart';
 import 'package:flutter_application_1/Service/WebService.dart';
 
 class HomeView extends StatefulWidget {
@@ -51,10 +52,10 @@ class _HomeViewState extends State<HomeView> with AutomaticKeepAliveClientMixin 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MyCollectionView(),
+                        builder: (context) => SettingView(),
                       ),
                     );
-                    print("LOG + huy ha");
+                    print("LOG + Setting");
                   },
                   child: TrendingItemTile(item: trendingList[index]),
                 );
