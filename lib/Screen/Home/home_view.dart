@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Model/TrendingModel/trending_model.dart';
 import 'package:flutter_application_1/Screen/Home/Item/home_item.dart';
-import 'package:flutter_application_1/Screen/MyCollection/my_collection_view.dart';
 import 'package:flutter_application_1/Screen/Setting/setting_view.dart';
 import 'package:flutter_application_1/Service/WebService.dart';
 
 class HomeView extends StatefulWidget {
   final TrendingServiceImpl trendingService;
 
-  const HomeView({Key? key, required this.trendingService}) : super(key: key);
+  const HomeView({super.key, required this.trendingService});
 
   @override
   _HomeViewState createState() => _HomeViewState();

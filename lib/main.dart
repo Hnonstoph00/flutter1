@@ -46,19 +46,8 @@ class _MainViewState extends State<MainView>
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Stack(
-        children: [
-          MainController(tabController: _tabController),
-          const Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 90,
-            child: BannerView(),
-          )
-        ],
-      ),
-    );
+      child:   MainController(tabController: _tabController),
+      );
   }
 }
 
@@ -87,7 +76,7 @@ class MainController extends StatelessWidget {
             controller: tabController,
             children: [
               HomeView(trendingService: TrendingServiceImpl()),
-              const TrendingView(),
+              TrendingView(),
               const MyCollectionView(),
             ],
           ),
