@@ -12,11 +12,30 @@ class SettingView extends StatelessWidget {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children:
-                models.map((item) => SectionSettingView(model: item)).toList(),
+            children: [
+              _buildBackButton(context),
+              ...models.map((item) => SectionSettingView(model: item)).toList(),
+            ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildBackButton(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 16, bottom: 16),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const SizedBox(
+              child:
+                  Image(image: AssetImage("lib/assets/images/back_icon.png")),
+            ),
+          )),
     );
   }
 }

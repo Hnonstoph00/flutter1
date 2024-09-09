@@ -23,7 +23,7 @@ class SettingModel {
       ]),
       SettingModel("Upgrade Premium", [
         SettingItemModel("lib/assets/images/setting_upgrade_icon.png",
-            "Upgrade Premium", true),
+            "Upgrade PremiumPremiumPremiumPremiumPremiumPremiumPremiumPremium", true),
         SettingItemModel(
             "lib/assets/images/setting_restore_icon.png", "Restore", false)
       ]),
@@ -53,24 +53,31 @@ class SectionSettingView extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text(
-            model.name,
-            style: const TextStyle(
-              color: Colors.blue, // Text color
-              fontSize: 18,
-              decoration: TextDecoration.none,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Text(
+              model.name,
+              style: const TextStyle(
+                color: Colors.blue, // Text color
+                fontSize: 18,
+                decoration: TextDecoration.none,
+              ),
             ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.black),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Column(
-            children: model.items
-                .map((item) => ItemSettingView(model: item))
-                .toList(),
+        Padding(
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24),
+          child: Container(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.black),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: model.items
+                  .map((item) => ItemSettingView(model: item))
+                  .toList(),
+            ),
           ),
         )
       ],
@@ -84,34 +91,42 @@ class ItemSettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 60,
-        child: Column(
-          children: [
-            Row(
-              children: <Widget>[
-                Image(image: AssetImage(model.icon)),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
+    return SizedBox(
+      height: 48,
+      child: Column(
+        children: [
+          SizedBox(height: 12,),
+          Expanded(child: 
+          Row(
+            children: <Widget>[
+              Image(image: AssetImage(model.icon)),
+              const SizedBox(
+                width: 12,
+              ),
+              Flexible(
+                child: Text(
                   model.title,
                   style: const TextStyle(
                     color: Colors.black, // Text color
                     fontSize: 18,
                     decoration: TextDecoration.none,
+                    // overflow: TextOverflow.ellipsis,
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 1,
-            ),
-            Container(
-              height: model.isShowline ? 1 : 0,
-              color: Colors.grey,
-            )
-          ],
-        ));
+              ),
+            ],
+          ),
+          ),
+          SizedBox(
+            height: model.isShowline ? 12 : 12,
+          ),
+          Container(
+            height: model.isShowline ? 1 : 0,
+            color: Colors.grey,
+          ),
+          // const Expanded(child: Placeholder())
+        ],
+      ),
+    );
   }
 }
