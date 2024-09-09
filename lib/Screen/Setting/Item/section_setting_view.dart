@@ -8,28 +8,28 @@ class SettingModel {
   static List<SettingModel> getSettingSection() {
     return [
       SettingModel("About", [
-        SettingItemModel("lib/assets/images/setting_rate_icon",
+        SettingItemModel('lib/assets/images/setting_rate_icon.png',
             "Rate Us on App Store", true),
         SettingItemModel(
-            "lib/assets/images/setting_share_icon", "Share this App", true),
+            'lib/assets/images/setting_share_icon.png', "Share this App", true),
         SettingItemModel(
-            "lib/assets/images/setting_send_icon", "Send Feedback", false)
+            "lib/assets/images/setting_send_icon.png", "Send Feedback", false)
       ]),
       SettingModel("Term & Privacy", [
-        SettingItemModel(
-            "lib/assets/images/setting_term_icon", "Term & Conditions", true),
-        SettingItemModel(
-            "lib/assets/images/setting_privacy_icon", "Privacy policy", false),
+        SettingItemModel("lib/assets/images/setting_term_icon.png",
+            "Term & Conditions", true),
+        SettingItemModel("lib/assets/images/setting_privacy_icon.png",
+            "Privacy policy", false),
       ]),
       SettingModel("Upgrade Premium", [
+        SettingItemModel("lib/assets/images/setting_upgrade_icon.png",
+            "Upgrade Premium", true),
         SettingItemModel(
-            "lib/assets/images/setting_upgrade_icon", "Upgrade Premium", true),
-        SettingItemModel(
-            "lib/assets/images/setting_restore_icon", "Restore", false)
+            "lib/assets/images/setting_restore_icon.png", "Restore", false)
       ]),
       SettingModel("App Settings", [
         SettingItemModel(
-            "lib/assets/images/setting_language_icon", "Language", false),
+            "lib/assets/images/setting_language_icon.png", "Language", false),
       ]),
     ];
   }
@@ -51,7 +51,17 @@ class SectionSettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(model.name),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            model.name,
+            style: const TextStyle(
+              color: Colors.blue, // Text color
+              fontSize: 18,
+              decoration: TextDecoration.none,
+            ),
+          ),
+        ),
         Container(
           decoration: BoxDecoration(
             border: Border.all(width: 1, color: Colors.black),
@@ -75,16 +85,23 @@ class ItemSettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 40,
+        height: 60,
         child: Column(
           children: [
             Row(
               children: <Widget>[
                 Image(image: AssetImage(model.icon)),
                 const SizedBox(
-                  width: 12,
+                  width: 20,
                 ),
-                Text(model.title),
+                Text(
+                  model.title,
+                  style: const TextStyle(
+                    color: Colors.black, // Text color
+                    fontSize: 18,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
               ],
             ),
             const SizedBox(

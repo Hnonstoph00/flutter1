@@ -9,8 +9,13 @@ class SettingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Column(
-            children: models.map((item) => SectionSettingView(model: item)).toList(),
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children:
+                models.map((item) => SectionSettingView(model: item)).toList(),
+          ),
+        ),
       ),
     );
   }
